@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发布</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css" th:href="@{/css/bootstrap-theme.min.css}">
+    <link rel="stylesheet" href="../static/css/community.css" th:href="@{/css/community.css}">
+    <script src="js/jquery-3.5.0.min.js" ></script>
+    <script src="js/bootstrap.min.js" type="application/javascript" ></script>
+</head>
+<body>
+<div th:insert="navigation :: nav"></div>
+
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发贴</h2>
+            <hr>
+
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">帖子标题（简单扼要）:</label>
+                    <input type="text" class="form-control" id="title" th:value="${title}" name="title" placeholder="请输入标题……">
+                </div>
+                <div class="form-group">
+                    <label for="title">帖子详情:</label>
+                    <textarea  class="form-control" id="description" th:text="${description}" name="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签:</label>
+                    <input type="text" class="form-control" id="tag" th:value="${tag}" name="tag" placeholder="请输入标签...">
+                </div>
+                <span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>帖子发布规则</h3>
+            帖子标题：不超过25个字，简要描述所要发布的内容<br>
+            帖子详情：详细补充所要描述的问题，适当情况可以添加图片说明<br>
+            添加标签：选择一个或多个标签，为所描述帖子进行分类，单个标签不超过10个字符<br>
+        </div>
+    </div>
+</div>
+</body>
+</html>
